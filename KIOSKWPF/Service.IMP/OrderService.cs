@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KIOSKWPF.Service.IMP
 {
-    internal class OrderService : IOrderService
+    internal class OrderService
     {
         protected IPrinterService Printer { get; }
 

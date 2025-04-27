@@ -82,7 +82,7 @@
         </Grid.Resources>
         <!-- 상단 메뉴 선택 영역 -->
         <StackPanel Orientation="Horizontal" Height="80" Background="#FF333333" VerticalAlignment="Top">
-            <RadioButton Content="햄버거" CommandParameter="Hamberger" IsChecked="True"/>
+            <RadioButton Content="햄버거" CommandParameter="Hamburger" IsChecked="{Binding IsFirstCat, Mode=OneWay}"/>
             <RadioButton Content="음료" CommandParameter="Beverage"/>
             <RadioButton Content="디저트" CommandParameter="Desert"/>
         </StackPanel>

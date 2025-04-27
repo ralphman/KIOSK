@@ -1,4 +1,6 @@
-﻿using KIOSKWPF.VM;
+﻿using KIOSKWPF.Service.IF;
+using KIOSKWPF.VM;
+using Microsoft.Extensions.DependencyInjection;
 using MVVM;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,15 @@ namespace KIOSKWPF
         {
             OrderVM = new OrderVM(provider);
             Provider = provider;
+
+            // 1. 환경 정보 로드
+
+            // 2. 메뉴 정보 구성
+            var dbService = Provider.GetRequiredService<IDBService>();
+            dbService.LoadMenuData();
+
+            // 3. 프로그램 기동
+
 
             InitOrder();
         }

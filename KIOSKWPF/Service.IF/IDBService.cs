@@ -8,5 +8,8 @@ namespace KIOSKWPF.Service.IF
 {
     internal interface IDBService
     {
+        bool LoadMenuData();
+
+        Dictionary<enCategory, List<MenuItem>> MenuItems { get; }
     }
 }

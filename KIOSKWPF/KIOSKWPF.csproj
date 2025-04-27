@@ -96,7 +96,10 @@
     <Compile Include="MVVM\MVVMBase.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Service.IF\ILogService.cs" />
+    <Compile Include="Service.IMP\LogService.cs" />
     <Compile Include="Service.TEST\DBService.cs" />
+    <Compile Include="Service.TEST\LogService.cs" />
     <Compile Include="Service.TEST\NWService.cs" />
     <Compile Include="Service.TEST\OrderService.cs" />
     <Compile Include="Service.TEST\PayService.cs" />
@@ -145,13 +148,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\Food\hamberger_1.png">
+    <Content Include="Image\Food\hamburger_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Image\Food\hamberger_2.png">
+    <Content Include="Image\Food\hamburger_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Image\Food\hamberger_3.png">
+    <Content Include="Image\Food\hamburger_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\Food\beverage_1.png">

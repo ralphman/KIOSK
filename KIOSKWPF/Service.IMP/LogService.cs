@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace KIOSKWPF.Service.IMP
 {
-    internal class PrinterService
+    internal class LogService
     {
+        public void WriteLog(string log, enLogLevel level = enLogLevel.INFO)
+        {
+
+        }
     }
 }

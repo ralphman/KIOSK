@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KIOSKWPF.Service.IMP
 {
-    internal class PayService : IPayService
+    internal class PayService
     {
     }
 }

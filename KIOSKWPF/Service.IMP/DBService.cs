@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace KIOSKWPF.Service.IMP
 {
-    internal class DBService : IDBService
+    internal class DBService
     {
+        public Dictionary<enCategory, List<MenuItem>> MenuItems { get; protected set; }
+
         protected INWService Network { get; }
 
         public DBService(INWService network)
         {
             Network = network;
+
+            MenuItems = new Dictionary<enCategory, List<MenuItem>>();
         }
 
-        public void LoadDB()
+        public bool LoadMenuData()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

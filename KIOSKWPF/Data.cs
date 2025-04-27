@@ -12,7 +12,7 @@ namespace KIOSKWPF
     {
         None = 0,
 
-        Hamberger = 1,
+        Hamburger = 1,
 
         Beverage = 2,
 
@@ -37,9 +37,9 @@ namespace KIOSKWPF
         public string ImagePath { get; set; }
     }
 
-    internal class Hamberger : MenuItem
+    internal class Hamburger : MenuItem
     {
-        public Hamberger() : base(enCategory.Hamberger)
+        public Hamburger() : base(enCategory.Hamburger)
         {
         }
     }
