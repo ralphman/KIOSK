@@ -8,7 +8,6 @@
      d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.Resources>
-
             <Style TargetType="{x:Type RadioButton}">
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="Width" Value="120" />
@@ -32,6 +31,54 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <DataTemplate x:Key="MenuItemTemplate">
+                <Border BorderBrush="Black" Background="LightGray" BorderThickness="1" Margin="10" Width="140" Height="180" CornerRadius="10">
+                    <Button Command="{Binding DataContext.MenuCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}">
+                        <Button.Content>
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="{Binding ImagePath}" Height="100" Stretch="UniformToFill"/>
+                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                                <TextBlock Text="{Binding Price, StringFormat={}{0:N0}원}" FontSize="14" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!--<Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="Gray" />
+                                            </Trigger>-->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="DarkGray"/>
+                                        <Setter TargetName="border" Property="RenderTransform">
+                                            <Setter.Value>
+                                                <TranslateTransform Y="1" X="1"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OrderItemTemplate">
+                <Border Background="LightGray" BorderThickness="0, 0, 0, 1" BorderBrush="Black">
+                    <DockPanel LastChildFill="False">
+                        <Label Content="{Binding Name}" />
+                        <Rectangle Width="3" DockPanel.Dock="Right"/>
+                        <Button Content="+"  Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.AddOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                        <Border DockPanel.Dock="Right">
+                            <Label Content="{Binding Count}" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        </Border>
+                        <Button Content="-" Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                    </DockPanel>
+                </Border>
+            </DataTemplate>
         </Grid.Resources>
         <!-- 상단 메뉴 선택 영역 -->
         <StackPanel Orientation="Horizontal" Height="80" Background="#FF333333" VerticalAlignment="Top">
@@ -42,70 +89,20 @@
 
         <!-- 상품 목록 영역 -->
         <ScrollViewer Margin="0,80,0,160" VerticalScrollBarVisibility="Auto">
-            <ItemsControl x:Name="MenuList" ItemsSource="{Binding Items}">
+            <ItemsControl x:Name="MenuList" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource MenuItemTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" Background="LightGray" BorderThickness="1" Margin="10" Width="140" Height="180" CornerRadius="10">
-                            <Button Command="{Binding DataContext.MenuCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}">
-                                <Button.Content>
-                                    <StackPanel Orientation="Vertical">
-                                        <Image Source="{Binding ImagePath}" Height="100" Stretch="UniformToFill"/>
-                                        <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
-                                        <TextBlock Text="{Binding Price, StringFormat={}{0:N0}원}" FontSize="14" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Button.Content>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}">
-                                            <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <!--<Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="Gray" />
-                                            </Trigger>-->
-                                            <Trigger Property="IsPressed" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="DarkGray"/>
-                                                <Setter TargetName="border" Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TranslateTransform Y="1" X="1"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
 
         <!-- 하단 주문 영역 -->
         <DockPanel VerticalAlignment="Bottom" Height="160" Background="#FF444444" LastChildFill="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding OrderItems}" Width="200" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Background="LightGray" BorderThickness="0, 0, 0, 1" BorderBrush="Black">
-                                <DockPanel LastChildFill="False">
-                                    <Label Content="{Binding Name}" />
-
-                                    <Rectangle Width="3" DockPanel.Dock="Right"/>
-                                    <Button Content="+"  Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.AddOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
-                                    <Border DockPanel.Dock="Right">
-                                        <Label Content="{Binding Count}" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                    </Border>
-                                    <Button Content="-" Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
-                                </DockPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                <ItemsControl ItemsSource="{Binding OrderItems}" Width="200" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ItemTemplate="{StaticResource OrderItemTemplate}">
                 </ItemsControl>
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
