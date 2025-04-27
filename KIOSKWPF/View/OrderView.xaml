@@ -99,7 +99,7 @@
                                     <Rectangle Width="3" DockPanel.Dock="Right"/>
                                     <Button Content="+"  Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.AddOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
                                     <Border DockPanel.Dock="Right">
-                                        <Label Content="{Binding Count}" Width="20"/>
+                                        <Label Content="{Binding Count}" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                                     </Border>
                                     <Button Content="-" Width="20" Height="20" DockPanel.Dock="Right" Command="{Binding DataContext.DeleteOrderCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
                                 </DockPanel>

@@ -12,11 +12,21 @@ namespace KIOSKWPF
 {
     internal class MainWindowVM : MVVMBase
     {
-        public MainWindowVM()
+        public IServiceProvider Provider { get; }
+
+        public MainWindowVM(IServiceProvider provider)
         {
-            OrderVM = new OrderVM();
+            OrderVM = new OrderVM(provider);
+            Provider = provider;
+
+            InitOrder();
         }
 
         public OrderVM OrderVM { get; set; } // DI를 이용해 보도록 하자
+
+        private void InitOrder()
+        {
+            OrderVM.Init();
+        }
     }
 }

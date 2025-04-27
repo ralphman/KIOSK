@@ -1,4 +1,6 @@
-﻿using MVVM;
+﻿using KIOSKWPF.Service.IF;
+using Microsoft.Extensions.DependencyInjection;
+using MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +14,22 @@ namespace KIOSKWPF.VM
 {
     internal class OrderVM : MVVMBase
     {
-        public OrderVM()
+        protected IServiceProvider Provider { get; }
+
+        protected IOrderService OrderService { get; set; }
+
+        public OrderVM(IServiceProvider provider)
         {
+            Provider = provider;
+
 #if DEBUG
             MakeDummyData();
 #endif
+        }
+
+        public void Init()
+        {
+            OrderService = Provider.GetRequiredService<IOrderService>();
         }
 
         public ObservableCollection<MenuItem> Items { get; } = new ObservableCollection<MenuItem>();

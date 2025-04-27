@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using KIOSKWPF.Service.IF;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,26 +9,14 @@ using System.Security.Authentication.ExtendedProtection;
 using System.Threading.Tasks;
 using System.Windows;
 
+#if DEBUG
+using KIOSKWPF.Service.TEST;
+#else
+using KIOSKWPF.Service.IMP;
+#endif
+
 namespace KIOSKWPF
 {
-    public interface IDBService
-    {
-        void LoadDB();
-    }
-
-    public interface IDataService
-    {
-        void LoadData();
-    }
-
-    public class DBService : IDBService
-    {
-        public void LoadDB() 
-        {
-            // DB에서 데이터 로드 하기
-        }
-    }
-
     /// <summary>
     /// App.xaml에 대한 상호 작용 논리
     /// </summary>
@@ -41,11 +30,16 @@ namespace KIOSKWPF
             base.OnStartup(e);
 
             var service = new ServiceCollection();
+            service.AddSingleton<INWService, NWService>();
             service.AddSingleton<IDBService, DBService>();
+            service.AddSingleton<IPrinterService, PrinterService>();
+            service.AddSingleton<IPayService, PayService>();
+            service.AddTransient<IOrderService, OrderService>();
 
-            _vm = new MainWindowVM();
+            var provider = service.BuildServiceProvider();
+
+            _vm = new MainWindowVM(provider);
             _window = new MainWindow();
-
             _window.DataContext = _vm;
 
             _window.Show();

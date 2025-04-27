@@ -78,7 +78,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DI_Service_Example.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,6 +96,21 @@
     <Compile Include="MVVM\MVVMBase.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Service.TEST\DBService.cs" />
+    <Compile Include="Service.TEST\NWService.cs" />
+    <Compile Include="Service.TEST\OrderService.cs" />
+    <Compile Include="Service.TEST\PayService.cs" />
+    <Compile Include="Service.TEST\PrinterService.cs" />
+    <Compile Include="Service.IMP\DBService.cs" />
+    <Compile Include="Service.IMP\NWService.cs" />
+    <Compile Include="Service.IMP\OrderService.cs" />
+    <Compile Include="Service.IMP\PayService.cs" />
+    <Compile Include="Service.IMP\PrinterService.cs" />
+    <Compile Include="Service.IF\IDBService.cs" />
+    <Compile Include="Service.IF\INWService.cs" />
+    <Compile Include="Service.IF\IOrderService.cs" />
+    <Compile Include="Service.IF\IPayService.cs" />
+    <Compile Include="Service.IF\IPrinterService.cs" />
     <Compile Include="View\BasketView.xaml.cs">
       <DependentUpon>BasketView.xaml</DependentUpon>
     </Compile>
