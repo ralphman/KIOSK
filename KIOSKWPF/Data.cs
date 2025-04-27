@@ -28,6 +28,8 @@ namespace KIOSKWPF
 
         public enCategory Category { get; }
 
+        public string Code { get;set; }
+
         public string Name { get; set; }
 
         public int Price { get; set; } 

@@ -1,4 +1,5 @@
-﻿using MVVM;
+﻿using KIOSKWPF.VM;
+using MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
