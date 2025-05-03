@@ -31,6 +31,8 @@ namespace KIOSKWPF.VM
             OrderService = Provider.GetRequiredService<IOrderService>();
             OrderService.OrderUpdated = OrderUpdated;
 
+            OrderStep = OrderService;
+
             // UX 초기화
             IsFirstCat = true;
             SelectCommand.Execute("Hamburger");
@@ -60,7 +62,13 @@ namespace KIOSKWPF.VM
 
         public ObservableCollection<OrderItem> OrderItems => OrderService.OrderItems;
 
+        public CompleteDelegate OrderComplete
+        {
+            get => OrderService.Complete;
+            set => OrderService.Complete = value;
+        }
 
+        //------------------ Commands ------------------//
         public ICommand SelectCommand
         {
             get

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace KIOSKWPF.Service.IF
 {
-    internal interface IOrderService
+    internal interface IOrderService : IOrderStep
     {
+        //-------------- 주문 관련 사항 --------------//
         int TotalPrice { get; }
 
         Action OrderUpdated { get; set; }
@@ -20,5 +21,8 @@ namespace KIOSKWPF.Service.IF
         bool AddOrder(OrderItem orderItem);
 
         bool DeleteOrder(OrderItem orderItem);
+
+        //-------------- 결재 관련 사항 --------------//
+        bool ExecutePay(enPayMedia media);
     }
 }

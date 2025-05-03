@@ -26,6 +26,8 @@ namespace KIOSKWPF.Service.TEST
         public Action OrderUpdated { get; set; }
 
         public ObservableCollection<OrderItem> OrderItems { get; }
+        
+        public CompleteDelegate Complete { get; set; }
 
         public bool AddMenu(MenuItem menuItem)
         {
@@ -81,6 +83,26 @@ namespace KIOSKWPF.Service.TEST
             TotalPrice = total;
 
             OrderUpdated?.Invoke();
+        }
+
+
+        public bool ExecutePay(enPayMedia media)
+        {
+            // 1. 5만원 이상 서명 패드
+
+            // 2. 서명과 기타 거래 정보를 이용 결재 모듈 호출
+
+            // 3. 결재완료된 후
+
+            // 3-1. 영수증 출력
+
+            // 3-2. 주방 영수증 출력
+
+            // 4. 거래 정보 서버에 전달
+
+            // 5. 처음 화면으로 이동
+
+            return true;
         }
     }
 }

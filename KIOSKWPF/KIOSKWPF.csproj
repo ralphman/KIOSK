@@ -97,6 +97,7 @@
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Service.IF\ILogService.cs" />
+    <Compile Include="Service.IF\IOrderStep.cs" />
     <Compile Include="Service.IMP\LogService.cs" />
     <Compile Include="Service.TEST\DBService.cs" />
     <Compile Include="Service.TEST\LogService.cs" />
